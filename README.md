@@ -166,7 +166,12 @@ ESM-2蛋白质语言模型嵌入 :
 
 2\. 打开powershell，进入src目录
 
-3\. 训练亮度模型：
+3\. 创建并激活环境，然后按照requirements.txt安装依赖：
+```
+pip install -r requirements.txt
+```
+
+4\. 训练亮度模型：
 
 ```
 python train_brightness_model.py --data GFP_data.xlsx --epochs 100 --batch_size 32 --lr 1e-4  
@@ -187,7 +192,7 @@ src/output/brightness_model/
 
 >> └── esm2_embeddings.npz       # ESM-2嵌入缓存
 
-4\. 运行强化学习模型，生成候选蛋白质序列
+5\. 运行强化学习模型，生成候选蛋白质序列
 
 ```
 python run_rl.py --brightness_model output/brightness_model/brightness_model.pth --rl_episodes 1500 --exclusion_list ../Exclusion_List.csv --start_seqs PIII-4 --n_candidates 18  --max_mutations 3 --lr 2e-4 --batch_size 32
