@@ -159,3 +159,48 @@ ESM-2蛋白质语言模型嵌入 :
 - PIII-4序列权重2倍(性能最好的起始序列)
 
 - 训练轮数: 500-1000 episodes
+
+**三、项目使用指南**
+
+1\. 在SC2026-main文件夹导入Exclusion_List，然后在src文件夹导入GFP_data
+
+2\. 打开powershell，进入src目录
+
+3\. 训练亮度模型：
+
+```
+python train_brightness_model.py --data GFP_data.xlsx --epochs 100 --batch_size 32 --lr 1e-4  
+```
+
+亮度模型训练完成后会输出以下文件：
+
+
+src/output/brightness_model/
+
+├── brightness_model.pth          # 核心模型文件
+
+├── evaluation_results.json       # 评估指标
+
+├── test_predictions.csv          # 测试集预测结果
+
+└── embeddings/
+
+>> └── esm2_embeddings.npz       # ESM-2嵌入缓存
+
+4\. 运行强化学习模型，生成候选蛋白质序列
+
+```
+python run_rl.py --brightness_model output/brightness_model/brightness_model.pth --rl_episodes 1500 --exclusion_list ../Exclusion_List.csv --start_seqs PIII-4 --n_candidates 18  --max_mutations 3 --lr 2e-4 --batch_size 32
+```
+
+运行完成后，会输出以下文件：
+
+output/
+
+├── final_candidates.csv              # 最终筛选后的候选序列
+
+├── screening_report.csv              # 筛选报告
+
+├── results.json                      # 完整结果（JSON格式）
+
+└── rl_results/                       # RL训练统计
