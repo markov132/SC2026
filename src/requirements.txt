@@ -1,15 +1,23 @@
-# 核心依赖
-pandas>=3.0.0
-numpy>=2.4.0
-scipy>=1.14.0
-scikit-learn>=1.8.0
-h5py>=3.16.0
-tqdm>=4.67.0
+# 核心数据处理
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+scikit-learn>=1.2.0
 
-# PyTorch (GPU版本 - CUDA 12.4)
+# 文件处理
+h5py>=3.6.0
+openpyxl>=3.0.0
+
+# 进度条
+tqdm>=4.64.0
+
+# PyTorch (GPU版本 - CUDA 12.x)
 # 安装命令: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 # CPU版本: pip install torch torchvision torchaudio
-torch>=2.6.0
+torch>=2.0.0
 
 # 蛋白质语言模型
 fair-esm>=2.0.0
+
+# 可视化
+matplotlib>=3.7.0
